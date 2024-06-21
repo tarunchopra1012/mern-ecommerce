@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ProductCard from "../components/ProductCard";
 
 const HomePage = () => {
   const [productList, setProductList] = useState([]);
@@ -23,11 +24,16 @@ const HomePage = () => {
   return (
     <React.Fragment>
       <h2>My HomePage</h2>
-      <ul>
-        {productList.map((product, index) => (
-          <li key={index}>{product.title}</li>
-        ))}
-      </ul>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+        }}
+      >
+        {productList.length !== 0 &&
+          productList.map((product) => <ProductCard product={product} />)}
+      </div>
     </React.Fragment>
   );
 };
