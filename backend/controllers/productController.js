@@ -7,7 +7,7 @@ async function createProduct(data) {
 }
 
 async function getProductList() {
-  return await Product.find();
+  return await Product.find().limit(20);
 }
 
 async function updateProduct(id, data) {
