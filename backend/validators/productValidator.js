@@ -1,62 +1,76 @@
 const { check, oneOf, validationResult } = require("express-validator");
 
 const validateProduct = [
-  check("title").not().isEmpty().withMessage("Title is required"),
-  check("description").not().isEmpty().withMessage("Description is required"),
-  check("price")
+  check("data.title").not().isEmpty().withMessage("Title is required"),
+  check("data.description")
+    .not()
+    .isEmpty()
+    .withMessage("Description is required"),
+  check("data.price")
     .isFloat({ min: 0 })
     .withMessage("Price must be a positive number"),
-  check("discountPercentage")
+  check("data.discountPercentage")
     .isFloat({ min: 0, max: 100 })
     .withMessage("Discount percentage must be between 0 and 100"),
-  check("rating")
+  check("data.rating")
     .isFloat({ min: 0, max: 5 })
     .withMessage("Rating must be between 0 and 5"),
-  check("stock")
+  check("data.stock")
     .isInt({ min: 0 })
     .withMessage("Stock must be a non-negative integer"),
-  check("brand").not().isEmpty().withMessage("Brand is required"),
-  check("category").not().isEmpty().withMessage("Category is required"),
-  check("thumbnail").not().isEmpty().withMessage("Thumbnail URL is required"),
-  check("images").not().isEmpty().withMessage("Images URL is required"),
+  check("data.brand").not().isEmpty().withMessage("Brand is required"),
+  check("data.category").not().isEmpty().withMessage("Category is required"),
+  check("data.thumbnail")
+    .not()
+    .isEmpty()
+    .withMessage("Thumbnail URL is required"),
+  check("data.images").not().isEmpty().withMessage("Images URL is required"),
 ];
 
 const validateProductPartial = [
   oneOf([
-    check("title").optional().not().isEmpty().withMessage("Title is required"),
+    check("data.title")
+      .optional()
+      .not()
+      .isEmpty()
+      .withMessage("Title is required"),
     check("description")
       .optional()
       .not()
       .isEmpty()
       .withMessage("Description is required"),
-    check("price")
+    check("data.price")
       .optional()
       .isFloat({ min: 0 })
       .withMessage("Price must be a positive number"),
-    check("discountPercentage")
+    check("data.discountPercentage")
       .optional()
       .isFloat({ min: 0, max: 100 })
       .withMessage("Discount percentage must be between 0 and 100"),
-    check("rating")
+    check("data.rating")
       .optional()
       .isFloat({ min: 0, max: 5 })
       .withMessage("Rating must be between 0 and 5"),
-    check("stock")
+    check("data.stock")
       .optional()
       .isInt({ min: 0 })
       .withMessage("Stock must be a non-negative integer"),
-    check("brand").optional().not().isEmpty().withMessage("Brand is required"),
-    check("category")
+    check("data.brand")
+      .optional()
+      .not()
+      .isEmpty()
+      .withMessage("Brand is required"),
+    check("data.category")
       .optional()
       .not()
       .isEmpty()
       .withMessage("Category is required"),
-    check("thumbnail")
+    check("data.thumbnail")
       .optional()
       .not()
       .isEmpty()
       .withMessage("Thumbnail URL is required"),
-    check("images")
+    check("data.images")
       .optional()
       .not()
       .isEmpty()

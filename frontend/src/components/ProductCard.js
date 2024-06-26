@@ -47,7 +47,7 @@ const ProductCard = (props) => {
             </Stack>
             <Stack direction="column">
               <Typography variant="body1" color="text.primary">
-                {product.price} $
+                ${product.price}
               </Typography>
               <Typography variant="body1" color="text.primary">
                 Price discount: {product.discountPercentage}%

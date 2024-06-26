@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
+import NavBar from "../components/NavBar";
 
 const HomePage = () => {
   const [productList, setProductList] = useState([]);
@@ -23,6 +24,7 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
+      <NavBar />
       <h2>My HomePage</h2>
       <div
         style={{

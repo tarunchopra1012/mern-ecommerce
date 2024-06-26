@@ -13,7 +13,10 @@ const checkProductExists = require("../middleware/checkProductExists");
 
 router.post("/create", validateProduct, validate, async (req, res) => {
   const product = await productController.createProduct(req.body);
-  res.json(product);
+  // res.json(product);
+  if (product) {
+    res.send("Product saved to the database!");
+  }
 });
 
 router.get("/read", async (req, res) => {

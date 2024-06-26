@@ -1,7 +1,7 @@
 const { Product } = require("../models/products");
 
 async function createProduct(data) {
-  const product = new Product(data);
+  const product = new Product(data.data);
   await Product.create(product);
   return product;
 }

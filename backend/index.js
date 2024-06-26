@@ -8,7 +8,7 @@ const { modifyResponse } = require("./interceptors/responseInterceptor");
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(modifyResponse);
+// app.use(modifyResponse);
 app.use("/api/products", productRoutes);
 
 const port = 4000;
