@@ -3,4 +3,4 @@ const checkProductExists = require("./checkProductExists");
 
 const productPreprocessing = [checkProductExists, validateProduct, validate];
 
-module.exports = productPreprocessing;
+export default productPreprocessing;

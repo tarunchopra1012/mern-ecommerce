@@ -8,6 +8,4 @@ function modifyResponse(req, res, next) {
   next();
 }
 
-module.exports = {
-  modifyResponse,
-};
+export { modifyResponse };

@@ -1,14 +1,17 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const productRoutes = require("./routes/productRoutes");
-const { modifyResponse } = require("./interceptors/responseInterceptor");
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import bodyParser from "body-parser";
+import productRoutes from "./routes/productRoutes.js";
+// import modifyResponse from "../interceptors/responseInterceptor.js";
 
 const app = express();
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // app.use(modifyResponse);
+
+app.use("/uploads", express.static("./uploads"));
 app.use("/api/products", productRoutes);
 
 const port = 4000;

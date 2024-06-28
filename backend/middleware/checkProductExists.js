@@ -1,5 +1,5 @@
-const { Product } = require("../models/products");
-const mongoose = require("mongoose");
+import { Product } from "../models/product.js";
+import mongoose from "mongoose";
 
 async function checkProductExists(req, res, next) {
   const id = req.params.id;
@@ -24,4 +24,4 @@ async function checkProductExists(req, res, next) {
     });
 }
 
-module.exports = checkProductExists;
+export default checkProductExists;

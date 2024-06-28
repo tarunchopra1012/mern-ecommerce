@@ -1,9 +1,13 @@
-const { Product } = require("../models/products");
+import { Product } from "../models/product.js";
 
 async function createProduct(data) {
-  const product = new Product(data.data);
-  await Product.create(product);
-  return product;
+  try {
+    const product = new Product(data);
+    await Product.create(product);
+    return product;
+  } catch (e) {
+    throw e;
+  }
 }
 
 async function getProductList() {
@@ -30,9 +34,4 @@ async function deleteProduct(id) {
   await Product.findByIdAndDelete(id);
 }
 
-module.exports = {
-  createProduct,
-  getProductList,
-  updateProduct,
-  deleteProduct,
-};
+export { createProduct, getProductList, updateProduct, deleteProduct };

@@ -10,6 +10,8 @@ import Stack from "@mui/material/Stack";
 const ProductCard = (props) => {
   const [product, setProduct] = useState(props.product);
 
+  console.log(product);
+
   return (
     <React.Fragment>
       <Card
@@ -26,7 +28,7 @@ const ProductCard = (props) => {
         <CardMedia
           component="img"
           height="194"
-          image={product.images}
+          image={`http://localhost:4000/${product.mainImage}`}
           alt="Product image"
         />
         <CardContent>
