@@ -5,7 +5,6 @@ const productSchema = new mongoose.Schema({
   _id: {
     type: String,
     required: true,
-    unique: true,
     default: () => nanoid(10), // Generate a Nano ID of 10 characters by default
   },
   title: {

@@ -5,9 +5,9 @@ async function checkProductExists(req, res, next) {
   const id = req.params.id;
 
   // Check if the id is a valid ObjectId
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ message: "Invalid product ID format" });
-  }
+  // if (!mongoose.Types.ObjectId.isValid(id)) {
+  //   return res.status(400).json({ message: "Invalid product ID format" });
+  // }
 
   // Proceed to check if the product actually exists
   Product.findById(id)

@@ -59,16 +59,21 @@ const validateProductPartial = [
       .not()
       .isEmpty()
       .withMessage("Category is required"),
-    check("thumbnail")
+    check("thumbnails")
       .optional()
       .not()
       .isEmpty()
       .withMessage("Thumbnail URL is required"),
     check("images")
       .optional()
-      .not()
-      .isEmpty()
-      .withMessage("Images URL is required"),
+      .isArray({ min: 1 })
+      .withMessage("At least one thumbnail URL is required")
+      .custom((value) => {
+        if (value.length > 3) {
+          throw new Error("Cannot upload more than 3 thumbnails");
+        }
+        return true;
+      }),
   ]),
 ];
 

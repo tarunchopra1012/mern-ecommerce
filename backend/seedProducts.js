@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const faker = require("@faker-js/faker").faker;
-const { Product } = require("./models/products");
+import mongoose from "mongoose";
+import { faker } from "@faker-js/faker";
+import { Product } from "./models/product.js";
 
 // MongoDB connection string
 const mongoURI = "mongodb://localhost:27017/ECommerce";
@@ -15,6 +15,12 @@ async function insertProductsInBatches(batchSize, batches) {
   for (let batch = 0; batch < batches; batch++) {
     const products = [];
     for (let i = 0; i < batchSize; i++) {
+      // Generate an array of 1 to 3 image URLs
+      const thumbnails = Array.from(
+        { length: faker.number.int({ min: 1, max: 3 }) },
+        () => faker.image.url()
+      );
+
       products.push({
         title: faker.commerce.productName(),
         description: faker.commerce.productDescription(),
@@ -28,8 +34,8 @@ async function insertProductsInBatches(batchSize, batches) {
         stock: faker.number.int({ min: 10, max: 100 }),
         brand: faker.company.name(),
         category: faker.commerce.department(),
-        thumbnail: faker.image.url(),
-        images: faker.image.url(),
+        mainImage: faker.image.url(),
+        thumbnails: thumbnails,
       });
     }
 
@@ -43,4 +49,4 @@ async function insertProductsInBatches(batchSize, batches) {
   mongoose.disconnect();
 }
 
-insertProductsInBatches(1000, 1000);
+insertProductsInBatches(5, 2);

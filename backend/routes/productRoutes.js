@@ -31,8 +31,6 @@ router.post(
       thumbnails: req.body.thumbnails,
     };
 
-    console.log("Product Data:", productData);
-
     try {
       const product = await createProduct(productData);
       res.status(200).send("Product saved to the database!");

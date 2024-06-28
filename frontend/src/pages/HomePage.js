@@ -34,7 +34,9 @@ const HomePage = () => {
         }}
       >
         {productList.length !== 0 &&
-          productList.map((product) => <ProductCard product={product} />)}
+          productList.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
       </div>
     </React.Fragment>
   );
