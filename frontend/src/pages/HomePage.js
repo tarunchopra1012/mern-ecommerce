@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import NavBar from "../components/NavBar";
+import { Typography } from "@mui/material";
 
 const HomePage = () => {
   const [productList, setProductList] = useState([]);
@@ -33,10 +34,19 @@ const HomePage = () => {
           justifyContent: "space-around",
         }}
       >
-        {productList.length !== 0 &&
+        {productList.length !== 0 ? (
           productList.map((product) => (
-            <ProductCard key={product._id} product={product} />
-          ))}
+            <ProductCard
+              key={product._id}
+              product={product}
+              getProduct={getProduct}
+            />
+          ))
+        ) : (
+          <Typography variant="h6" color="textSecondary">
+            No products found
+          </Typography>
+        )}
       </div>
     </React.Fragment>
   );

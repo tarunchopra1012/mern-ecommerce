@@ -9,10 +9,12 @@ import Stack from "@mui/material/Stack";
 import CardActions from "@mui/material/CardActions";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 const ProductCard = (props) => {
-  const [product, setProduct] = useState(props.product);
+  const [product] = useState(props.product);
   const navigate = useNavigate();
 
   const handleUpdate = (id) => {
@@ -20,16 +22,30 @@ const ProductCard = (props) => {
   };
 
   const handleDelete = async (id) => {
-    try {
-      const response = await axios.delete(
-        "http://localhost:4000/api/products/delete/" + id
-      );
-      console.log(response.data);
-      if (response.data === "Product deleted!") {
-        props.getProduct();
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const response = await axios.delete(
+          "http://localhost:4000/api/products/delete/" + id
+        );
+        console.log(response.data);
+        if (response.data === "Product deleted!") {
+          toast.success("Product has been deleted!");
+          props.getProduct();
+        }
+      } catch (e) {
+        console.log(e);
+        toast.error("Failed to delete the product.");
       }
-    } catch (e) {
-      console.log(e);
     }
   };
 
@@ -91,7 +107,7 @@ const ProductCard = (props) => {
               variant="contained"
               onClick={() => handleUpdate(product._id)}
             >
-              Update
+              Edit
             </Button>
             <Button
               color="error"
